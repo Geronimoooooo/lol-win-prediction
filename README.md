@@ -1,8 +1,11 @@
 **Status:** Currently in development.
 
 # LoL Win Prediction: Early-Game Analysis
-This project builds the tool that can predict the outcome of League of Legends match after 10 minutes from start.
-Basically the tool can be useful for e-sports coaches, game analytics or competitive players who want to understand how early-game decisions affect match result.
+
+**Status:** Currently in development.
+
+This project builds a tool that can predict the outcome of a League of Legends match from the first 10 minutes from start.
+The tool can be useful for e-sports coaches, game analysts or competitive players who want to understand how early-game decisions affect the final match outcome.
 Model outputs the probability of the blue team winning.
 
 ## Business Goal
