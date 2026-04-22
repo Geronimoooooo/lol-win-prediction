@@ -1,5 +1,3 @@
-**Status:** Currently in development.
-
 # LoL Win Prediction: Early-Game Analysis
 
 **Status:** Currently in development.
