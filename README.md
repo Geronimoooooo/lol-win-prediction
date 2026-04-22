@@ -44,7 +44,19 @@ Practical value:
 4. [Optional] Hyperparameter tuning via Optuna
 
 ## Project Structure
-TBD (will be defined in first commit)
+\`\`\`
+lol-win-prediction/
+├── data/
+│   ├── raw/              # Original datasets (not tracked in git)
+│   └── processed/        # Cleaned/transformed data (not tracked in git)
+├── notebooks/            # Jupyter notebooks for exploration and modeling
+├── src/                  # Source code modules (reusable functions)
+├── reports/
+│   └── figures/          # Saved plots and visualizations
+├── README.md
+├── requirements.txt      # Python dependencies
+└── .gitignore
+\`\`\`
 
 ## Results
 TBD (will be described after development, first results after 1 and 2 points of Model Progression)
