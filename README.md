@@ -1,8 +1,9 @@
+**Status:** Currently in development.
+
 # LoL Win Prediction: Early-Game Analysis
-Create a tool which can predict an outcome of a match after 10 minutes from start.
-Basically the tool can be useful for e-sports trainers, game analytics or players who want to understand their mistakes in early game phase.
-Model gives only prediction of wining as a variety of blue team win chance.
-Now in development.
+This project builds the tool that can predict the outcome of League of Legends match after 10 minutes from start.
+Basically the tool can be useful for e-sports coaches, game analytics or competitive players who want to understand how early-game decisions affect match result.
+Model outputs the probability of the blue team winning.
 
 ## Business Goal
 Build a model that predicts the outcome of a League of Legends match 
@@ -14,15 +15,17 @@ Practical value:
 
 ## ML Task
 - Type: Binary classification
-- Target: `blue_team_wins` (1 / 0)
+- Target: `blueWins` (1 / 0)
 - Input: Aggregated statistics from first 10 minutes (both teams)
 - Prediction moment: Minute 10 of the match
 - Prediction window: Until match end (~20-40 minutes ahead)
 
 ## Dataset
-Kaggle: "League of Legends Diamond Ranked Games (10 min)"
-- ~10K matches, Diamond ranked solo queue
-- Pre-aggregated first-10-min features (gold, kills, objectives, wards, etc.)
+- **Source:** [Kaggle — LoL Diamond Ranked Games (10 min)](https://www.kaggle.com/datasets/bobbyscience/league-of-legends-diamond-ranked-games-10-min)
+- **Size:** ~10,000 matches
+- **Rank:** Diamond solo queue
+- **Region:** EUW (European West)
+- **Features:** Pre-aggregated statistics from the first 10 minutes for both teams (gold, kills, objectives, wards, CS, experience, etc.)
 
 ## Metrics
 - Primary: ROC-AUC (classes are near-balanced ~50/50)
@@ -49,8 +52,9 @@ TBD (will be described after development, first results after 1 and 2 points of 
 TBD (will be described after development)
 
 ## Author
-Papkov Artyom:
-[Linkedin](https://www.linkedin.com/in/artyom-papkov/)
-[GitHub](https://github.com/Geronimoooooo)
-[Telegram](@geronimoooooooo)
+
+**Artyom Papkov**
+
+- [LinkedIn](https://www.linkedin.com/in/artyom-papkov/)
+- [GitHub](https://github.com/Geronimoooooo)
 
