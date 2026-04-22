@@ -44,7 +44,7 @@ Practical value:
 4. [Optional] Hyperparameter tuning via Optuna
 
 ## Project Structure
-\`\`\`
+```
 lol-win-prediction/
 ├── data/
 │   ├── raw/              # Original datasets (not tracked in git)
@@ -56,7 +56,7 @@ lol-win-prediction/
 ├── README.md
 ├── requirements.txt      # Python dependencies
 └── .gitignore
-\`\`\`
+```
 
 ## Results
 TBD (will be described after development, first results after 1 and 2 points of Model Progression)
