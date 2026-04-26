@@ -47,14 +47,26 @@ Practical value:
 ```
 lol-win-prediction/
 ├── data/
-│   ├── raw/              # Original datasets (not tracked in git)
-│   └── processed/        # Cleaned/transformed data (not tracked in git)
-├── notebooks/            # Jupyter notebooks for exploration and modeling
-├── src/                  # Source code modules (reusable functions)
+│   ├── raw/                   # Original datasets (not tracked in git)
+│   └── processed/             # Cleaned/transformed data (not tracked in git)
+├── notebooks/                 # Jupyter notebooks for exploration and modeling
+│   ├── 01_eda.ipynb           # portfolio EDA
+│   ├── 02_baseline.ipynb      # Logistic Regression
+│   ├── 03_random_forest.ipynb # RF (default + tuned)
+│   └── 04_lightgbm.ipynb      # LightGBM (default + tuned) + final comparison
+├── src/                       # Source code modules (reusable functions)
+│   ├── __init__.py
+│   ├── config.py              # paths, hyperparameters
+│   ├── preprocessing.py       # methods for preparing the data
+│   ├── model.py               # LoLPredictor class (train, predict, save/load)
+│   └── evaluation.py          # metric's method
+├── scripts/
+│   ├── train.py               # train launch and save
+│   └── predict.py             # inference for new data
 ├── reports/
-│   └── figures/          # Saved plots and visualizations
+│   └── figures/               # Saved plots and visualizations
 ├── README.md
-├── requirements.txt      # Python dependencies
+├── requirements.txt           # Python dependencies
 └── .gitignore
 ```
 
