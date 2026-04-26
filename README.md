@@ -1,18 +1,21 @@
 # LoL Win Prediction: Early-Game Analysis
 
-**Status:** Currently in development.
+**Status:** Completed (April 2026).
 
 This project builds a tool that can predict the outcome of a League of Legends match from the first 10 minutes from start.
 The tool can be useful for e-sports coaches, game analysts or competitive players who want to understand how early-game decisions affect the final match outcome.
 Model outputs the probability of the blue team winning.
 
 ## Business Goal
-Build a model that predicts the outcome of a League of Legends match 
-based on the first 10 minutes of gameplay. 
 
-Practical value:
-- For e-sports coaches: understand how critical early-game mistakes are
-- For game analysts: identify which early factors determine match outcome
+Build a **production-ready** ML system that predicts LoL match outcomes from 
+10-minute features, achieving robust ROC-AUC > 0.80 with full reproducibility 
+and CLI-based inference.
+
+### Stakeholders
+- **E-sports coaches** — understand impact of early-game decisions on match outcome
+- **Game analysts at developers** (Riot, etc.) — quantify importance of in-game features
+- **Competitive players** — recognize patterns that lead to comebacks vs lost games
 
 ## ML Task
 - Type: Binary classification
@@ -38,10 +41,26 @@ Practical value:
 - Simple Logistic Regression on raw features
 
 ## Model Progression
-1. Logistic Regression (baseline + teaches preprocessing)
-2. Random Forest (out-of-the-box tree ensemble)
-3. LightGBM (main model with cross-validation and early stopping)
-4. [Optional] Hyperparameter tuning via Optuna
+
+Models are evaluated in order of increasing complexity to identify the simplest model 
+that achieves competitive performance:
+
+1. **Logistic Regression** — baseline, requires careful preprocessing (scaling, 
+   multicollinearity removal)
+2. **Random Forest** — non-linear ensemble, demonstrates overfitting diagnosis 
+   and regularization tuning
+3. **LightGBM** — gradient boosting with early stopping
+4. **Final model selection** — based on test ROC-AUC and train-test gap
+
+## Tech Stack
+
+- **Language:** Python 3.12
+- **ML:** scikit-learn, LightGBM
+- **Data:** pandas, numpy
+- **Visualization:** matplotlib, seaborn
+- **Notebooks:** Jupyter
+- **Code organization:** modular `src/` layout, CLI scripts via `argparse`
+- **Reproducibility:** `requirements.txt`, fixed `random_state=42`, separate train/val/test
 
 ## Project Structure
 ```
@@ -59,7 +78,7 @@ lol-win-prediction/
 │   ├── config.py              # paths, hyperparameters
 │   ├── preprocessing.py       # methods for preparing the data
 │   ├── model.py               # LoLPredictor class (train, predict, save/load)
-│   └── evaluation.py          # metric's method
+│   └── evaluation.py          # metrics and visualization
 ├── scripts/
 │   ├── train.py               # train launch and save
 │   └── predict.py             # inference for new data
@@ -70,7 +89,7 @@ lol-win-prediction/
 └── .gitignore
 ```
 
-## Results
+## Results & Findings
 ### Model Comparison
 
 | Model | Test Accuracy | Test ROC-AUC | Train-Test Gap | CV ROC-AUC |
@@ -80,8 +99,6 @@ lol-win-prediction/
 | Random Forest (tuned) | 0.7191 | 0.8044 | 0.06 | 0.8066 ± 0.009 |
 | LightGBM (default) | 0.7146 | 0.7986 | 0.05 | 0.7786 ± 0.0099 |
 | LightGBM (tuned) | 0.7212 | 0.8020 | 0.02 | 0.8024 ± 0.0082 |
-
-### Key Findings
 
 **1. Logistic regression wins this dataset.** Despite trying three fundamentally 
 different algorithms (linear, bagging, boosting), all models converge to ~0.80-0.81 
@@ -104,13 +121,6 @@ explains why:
 - **More data** — more matches across patches and ranks
 - **Richer features** — early-game composition data, player skill levels, 
   item timings, not just aggregated stats
-
-## Author
-
-**Artyom Papkov**
-
-- [LinkedIn](https://www.linkedin.com/in/artyom-papkov/)
-- [GitHub](https://github.com/Geronimoooooo)
 
 ## How to Use
 
@@ -159,18 +169,9 @@ Predictions are saved as a CSV with two columns:
 - `prediction` — predicted class (0 = blue loses, 1 = blue wins)
 - `probability_blue_wins` — model confidence for blue victory (0.0 - 1.0)
 
-### Project Architecture
+## Author
 
-- **`notebooks/`** — exploratory analysis and model experimentation
-  - `01_eda.ipynb` — exploratory data analysis
-  - `02_baseline.ipynb` — Logistic Regression baseline
-  - `03_random_forest.ipynb` — Random Forest comparison
-  - `04_lightgbm.ipynb` — LightGBM and final model comparison
-- **`src/`** — production-grade modules
-  - `config.py` — paths, hyperparameters, feature lists
-  - `preprocessing.py` — data loading and preparation functions
-  - `model.py` — `LoLPredictor` class with train/predict/save/load
-  - `evaluation.py` — metrics and visualization functions
-- **`scripts/`** — CLI entry points
-  - `train.py` — full training pipeline
-  - `predict.py` — inference on new data
+**Artyom Papkov**
+
+- [LinkedIn](https://www.linkedin.com/in/artyom-papkov/)
+- [GitHub](https://github.com/Geronimoooooo)
