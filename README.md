@@ -122,6 +122,14 @@ explains why:
 - **Richer features** — early-game composition data, player skill levels, 
   item timings, not just aggregated stats
 
+### Visualizations
+
+![ROC Curves Comparison](reports/figures/roc_curves_comparison.png)
+
+![Confusion Matrix](reports/figures/confusion_matrix_logreg.png)
+
+![Feature Importance](reports/figures/feature_importance_logreg.png)
+
 ## How to Use
 
 ### Setup
