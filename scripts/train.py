@@ -47,7 +47,6 @@ def main() -> None:
     print('\n' + '=' * 60)
     print('Training complete.')
     print('=' * 60)
-    pass
 
 if __name__ == '__main__':
     main()

@@ -34,11 +34,11 @@ COLUMNS_TO_DROP = [
     'redEliteMonsters',
 ]
 
-#Train test split
+# Train test split
 TEST_SIZE = 0.2
 RANDOM_STATE = 42
 
-#Model hyperparameters
+# Model hyperparameters
 LOGREG_PARAMS = {
     'max_iter': 1000,
     'random_state': RANDOM_STATE,

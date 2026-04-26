@@ -43,7 +43,6 @@ def print_metrics_report(y_true: pd.Series, y_pred: np.ndarray, y_pred_proba: np
         print(f'{name}: {value:.4f}')
     print('\nClassification Report:')
     print(classification_report(y_true, y_pred, target_names=['Blue Loses', 'Blue Wins']))
-    pass
 
 def plot_confusion_matrix(y_true: pd.Series, y_pred: np.ndarray, ax=None) -> None:
     """Plot confusion matrix as a heatmap.
@@ -57,12 +56,11 @@ def plot_confusion_matrix(y_true: pd.Series, y_pred: np.ndarray, ax=None) -> Non
     if ax is None:
         fig, ax = plt.subplots(figsize=(6, 5))
     sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
-                xticklabels=['Blue Loses', 'BlueWins'],
-                yticklabels=['Blue Loses', 'BlueWins'], ax=ax)
+                xticklabels=['Blue Loses', 'Blue Wins'],
+                yticklabels=['Blue Loses', 'Blue Wins'], ax=ax)
     ax.set_xlabel('Predicted')
     ax.set_ylabel('True')
     ax.set_title('Confusion Matrix')
-    pass
 
 def plot_roc_curve(y_true: pd.Series, y_pred_proba: np.ndarray, ax=None, label: str = 'Model') -> None:
     """Plot ROC curve with AUC annotation.
@@ -78,10 +76,9 @@ def plot_roc_curve(y_true: pd.Series, y_pred_proba: np.ndarray, ax=None, label: 
     if ax is None:
         fig, ax = plt.subplots(figsize=(7, 6))
     ax.plot(fpr, tpr, linewidth=2, label=f'{label} (AUC = {auc:.4f})')
-    ax.plot([0, 1], [0, 1], linestyle='--', color='gray', label='Random (AUC=0,5)')
+    ax.plot([0, 1], [0, 1], linestyle='--', color='gray', label='Random (AUC=0.5)')
     ax.set_xlabel('False Positive Rate')
     ax.set_ylabel('True Positive Rate')
     ax.set_title('ROC Curve')
     ax.legend(loc='lower right')
     ax.grid(alpha=0.3)
-    pass

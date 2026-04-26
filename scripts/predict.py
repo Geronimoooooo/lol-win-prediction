@@ -63,7 +63,7 @@ def main() -> None:
 
     print('\n[05/05] Saving predictions')
     results = pd.DataFrame({
-        'predictions': predictions,
+        'prediction': predictions,
         'probability_blue_wins': probabilities,
     })
     results.to_csv(args.output, index=False)
@@ -72,7 +72,6 @@ def main() -> None:
     print('\n' + '=' * 60)
     print(f'Done. Total matches scored: {len(predictions)}')
     print('=' * 60)
-    pass
 
 if __name__ == '__main__':
     main()
