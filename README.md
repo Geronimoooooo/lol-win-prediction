@@ -71,10 +71,39 @@ lol-win-prediction/
 ```
 
 ## Results
-TBD (will be described after development, first results after 1 and 2 points of Model Progression)
+### Model Comparison
 
-## How to run
-TBD (will be described after development)
+| Model | Test Accuracy | Test ROC-AUC | Train-Test Gap | CV ROC-AUC |
+|---|---|---|---|---|
+| Logistic Regression | 0.7201 | **0.8068** | ~0.01 | 0.8107 ± 0.008 |
+| Random Forest (default) | 0.7206 | 0.8006 | 0.20 | 0.7973 ± 0.009 |
+| Random Forest (tuned) | 0.7191 | 0.8044 | 0.06 | 0.8066 ± 0.009 |
+| LightGBM (default) | 0.7146 | 0.7986 | 0.05 | 0.7786 ± 0.0099 |
+| LightGBM (tuned) | 0.7212 | 0.8020 | 0.02 | 0.8024 ± 0.0082 |
+
+### Key Findings
+
+**1. Logistic regression wins this dataset.** Despite trying three fundamentally 
+different algorithms (linear, bagging, boosting), all models converge to ~0.80-0.81 
+ROC-AUC. The simplest model performs best.
+
+**2. The dataset exhibits an information ceiling around 0.81 ROC-AUC.** This is 
+consistent across models and splits, suggesting we've extracted the available signal 
+from the current features.
+
+**3. Feature importance confirms single-feature dominance.** `blueGoldDiff` 
+outweighs all other features by an order of magnitude across all models. This 
+explains why:
+- Non-linear methods (RF, LGBM) don't find additional patterns
+- LightGBM's default early stopping triggered at iteration 8 — the model 
+  captured the main signal quickly and found nothing useful beyond it
+
+**4. Breaking the 0.81 ceiling requires either:**
+- **Feature engineering** — derived features like `wards_in_enemy_jungle`, 
+  `kills_ratio`, `gold_diff_per_minute` to capture patterns not expressed linearly
+- **More data** — more matches across patches and ranks
+- **Richer features** — early-game composition data, player skill levels, 
+  item timings, not just aggregated stats
 
 ## Author
 
