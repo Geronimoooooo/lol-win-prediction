@@ -230,3 +230,13 @@ Thumbs.db
 
 # Reports — можно коммитить figures, но не промежуточные отчёты
 reports/intermediate/
+
+# Generated predictions
+predictions.csv
+*.csv
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Saved models (большие бинарные файлы)
+models/*.pkl
+!models/.gitkeep

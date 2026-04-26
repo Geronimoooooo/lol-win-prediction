@@ -71,3 +71,65 @@ TBD (will be described after development)
 - [LinkedIn](https://www.linkedin.com/in/artyom-papkov/)
 - [GitHub](https://github.com/Geronimoooooo)
 
+## How to Use
+
+### Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/Geronimoooooo/lol-win-prediction.git
+cd lol-win-prediction
+
+# Create virtual environment (Python 3.12+)
+python -m venv .venv
+.venv\Scripts\Activate.ps1   # Windows PowerShell
+# source .venv/bin/activate  # Linux/Mac
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+### Download Dataset
+
+Download from Kaggle: [LoL Diamond Ranked Games (10 min)](https://www.kaggle.com/datasets/bobbyscience/league-of-legends-diamond-ranked-games-10-min)
+
+Place `high_diamond_ranked_10min.csv` in `data/raw/`.
+
+### Train a Model
+
+```bash
+python -m scripts.train
+```
+
+This will:
+- Load the raw dataset
+- Apply preprocessing (drop redundant features, train/test split, scaling)
+- Train Logistic Regression
+- Evaluate on test set
+- Save the trained model to `models/logreg_baseline.pkl`
+
+### Make Predictions on New Data
+
+```bash
+python -m scripts.predict --input data/raw/high_diamond_ranked_10min.csv --output predictions.csv
+```
+
+Predictions are saved as a CSV with two columns:
+- `prediction` — predicted class (0 = blue loses, 1 = blue wins)
+- `probability_blue_wins` — model confidence for blue victory (0.0 - 1.0)
+
+### Project Architecture
+
+- **`notebooks/`** — exploratory analysis and model experimentation
+  - `01_eda.ipynb` — exploratory data analysis
+  - `02_baseline.ipynb` — Logistic Regression baseline
+  - `03_random_forest.ipynb` — Random Forest comparison
+  - `04_lightgbm.ipynb` — LightGBM and final model comparison
+- **`src/`** — production-grade modules
+  - `config.py` — paths, hyperparameters, feature lists
+  - `preprocessing.py` — data loading and preparation functions
+  - `model.py` — `LoLPredictor` class with train/predict/save/load
+  - `evaluation.py` — metrics and visualization functions
+- **`scripts/`** — CLI entry points
+  - `train.py` — full training pipeline
+  - `predict.py` — inference on new data
